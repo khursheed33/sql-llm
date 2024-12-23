@@ -50,7 +50,7 @@ if __name__ == "__main__":
     # model_id, dataset_id, epochs, batch_size
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_id', type=str, default='Qwen/Qwen2-0.5B-Instruct')
-    parser.add_argument('--dataset_id', type=str, default='khursheed33/openwho')
+    # parser.add_argument('--dataset_id', type=str, default='khursheed33/openwho')
     parser.add_argument('--epochs', type=int, default=5)
     parser.add_argument('--batch_size', type=int, default=8)
     parser.add_argument('--hf_login', type=bool, default=True)
