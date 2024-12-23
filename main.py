@@ -12,7 +12,7 @@ import time
 
 def main(args):
     tokenizer, model = get_qwen_model(model_id = args.model_id)
-    data = get_dataset(dataset_id=args.dataset_id)
+    data = get_dataset()
     
     training_params = TrainingArguments(
     output_dir="./model",
@@ -23,8 +23,8 @@ def main(args):
     logging_steps=500,
     learning_rate=1e-4,
     push_to_hub = True,
-    hub_model_id = f"{args.model_id.split('/')[1]}-khursheed33-SQL-LLM",
-    push_to_hub_model_id = f"{args.model_id.split('/')[1]}-khursheed33-SQL-LLM"
+    hub_model_id = f"{args.model_id.split('/')[1]}-SQL-generator",
+    push_to_hub_model_id = f"{args.model_id.split('/')[1]}-SQL-generator"
     )
     
     response_template = " ### The response query is:"
@@ -41,7 +41,7 @@ def main(args):
     print("TIME TAKEN: ", time.time() - t1)
     trainer.save_model(f"./{args.model_id.split('/')[1]}")
     
-    trainer.push_to_hub(f"omaratef3221/{args.model_id.split('/')[1]}-khursheed33-SQL-LLM")
+    trainer.push_to_hub(f"omaratef3221/{args.model_id.split('/')[1]}-SQL-generator")
     
     requests.post("https://ntfy.sh/sql_query_generator_llm", data="Model Trained Uploaded to HuggingFace ".encode(encoding='utf-8'))
 
@@ -49,8 +49,8 @@ def main(args):
 if __name__ == "__main__":
     # model_id, dataset_id, epochs, batch_size
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model_id', type=str, default='Qwen/Qwen2.5-7B-Instruct')
-    parser.add_argument('--dataset_id', type=str, default='data.csv')
+    parser.add_argument('--model_id', type=str, default='Qwen/Qwen2-0.5B-Instruct')
+    parser.add_argument('--dataset_id', type=str, default='khursheed33/openwho')
     parser.add_argument('--epochs', type=int, default=5)
     parser.add_argument('--batch_size', type=int, default=8)
     parser.add_argument('--hf_login', type=bool, default=True)
