@@ -12,7 +12,7 @@ import time
 
 def main(args):
     tokenizer, model = get_qwen_model(model_id = args.model_id)
-    data = get_dataset()
+    data = get_dataset(file_path="data.csv", file_type="csv")
     
     training_params = TrainingArguments(
     output_dir="./model",
