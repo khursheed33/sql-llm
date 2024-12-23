@@ -87,7 +87,7 @@ To train the model, follow these steps:
 
 3. Run the training script:
     ```bash
-    python train.py --model_id Qwen/Qwen2-0.5B-Instruct --dataset_id motherduckdb/duckdb-text2sql-25k --epochs 5 --batch_size 8
+    python train.py --model_id Qwen/Qwen2.5-72B-Instruct --dataset_id motherduckdb/duckdb-text2sql-25k --epochs 5 --batch_size 8
     ```
 
 ## Notifications
